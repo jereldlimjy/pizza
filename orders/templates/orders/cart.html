@@ -1,0 +1,56 @@
+{% extends 'orders/base.html' %}
+{% load static %}
+
+{% block title %}
+	Cart
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row d-flex justify-content-center mt-5">
+			<h1 class="col-auto order"><em>Cart</em></h1>
+		</div>
+
+		<div class="row d-flex justify-content-center">
+			<div class="card bg-light border mt-2">
+				<ul class="list-group list-group-flush">
+					{% if items %}
+						{% for item in items %}
+							<li class="list-group-item">
+								<div>
+									{{ item }}
+								</div>
+
+								<div class="float-right">
+									${{ item.price }}
+								</div>
+							</li>
+						{% endfor %}
+						<li class="list-group-item">
+							<b>Total:</b>
+
+							<div id="total" class="float-right">
+								<b>${{ total }}</b>
+							</div>
+							</br>
+							<div class="text-center mt-2">
+								<form action="{% url 'purchase' %}" method="post">
+									{% csrf_token %}
+									<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+									    data-key="{{ key }}"
+									    data-description="Jereld's Pizza"
+									    data-amount="{{ payment }}"
+									    data-locale="auto">
+									</script>
+									<input type="hidden" name="payment" value="{{ payment }}" />
+								</form>
+							</div>
+						</li>
+					{% else %}
+						<li class="list-group-item">Your cart appears to be empty... Click <a href="{% url 'order' %}">here</a> to start ordering now!</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</div>
+{% endblock %}

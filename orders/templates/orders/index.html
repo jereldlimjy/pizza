@@ -1,0 +1,266 @@
+{% extends 'orders/base.html' %}
+{% load static %}
+
+{% block title %}
+	Home
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col">
+			</div>
+			<div class="col pt-3">
+				<h1 class="text-center menu"><em>Our Menu</em></h1>
+			</div>
+			<div class="col">
+				<a  href="{% url 'order' %}" class="btn btn-success btn-lg float-right">Ready to order?</br>Click here to start ordering!</a>
+			</div>
+		</div>
+		<ul class="nav nav-pills mt-5" id="pills-tab" role="tablist">
+			<li class="nav-item mr-2">
+    			<a class="nav-link" id="pizza-tab" data-toggle="pill" href="#pills-pizza" role="tab" aria-controls="pizza" aria-selected="true">
+    				<img src="{% static 'orders/pizza.png' %}" alt="Pizza" width="100" height="100">
+    				</br>
+    				<div class="mt-2 text-center"><b>Pizza</b></div>
+    			</a>
+  			</li>
+  			<li class="nav-item mr-2">
+    			<a class="nav-link" id="sub-tab" data-toggle="pill" href="#pills-sub" role="tab" aria-controls="sub" aria-selected="false">
+    				<img src="{% static 'orders/sandwich.png' %}" alt="Sub" width="100" height="100">
+    				</br>
+    				<div class="mt-2 text-center"><b>Sub</b></div>
+    			</a>
+  			</li>
+  			<li class="nav-item mr-2">
+    			<a class="nav-link" id="pasta-tab" data-toggle="pill" href="#pills-pasta" role="tab" aria-controls="pasta" aria-selected="false">
+    				<img src="{% static 'orders/pasta.png' %}" alt="Pasta" width="100" height="100">
+    				</br>
+    				<div class="mt-2 text-center"><b>Pasta</b></div>
+    			</a>
+  			</li>
+  			<li class="nav-item mr-2">
+    			<a class="nav-link" id="salad-tab" data-toggle="pill" href="#pills-salad" role="tab" aria-controls="salad" aria-selected="false">
+    				<img src="{% static 'orders/salad.png' %}" alt="Salad" width="100" height="100">
+    				</br>
+    				<div class="mt-2 text-center"><b>Salad</b></div>
+    			</a>
+  			</li>
+  			<li class="nav-item mr-2">
+    			<a class="nav-link" id="platter-tab" data-toggle="pill" href="#pills-platter" role="tab" aria-controls="platter" aria-selected="false">
+    				<img src="{% static 'orders/platter.png' %}" alt="Platter" width="100" height="100">
+    				</br>
+    				<div class="mt-2 text-center"><b>Dinner Platter</b></div>
+    			</a>
+  			</li>
+		</ul>
+
+		<div class="tab-content" id="pills-tabContent">
+			<div class="tab-pane fade" id="pills-pizza" role="tabpanel" aria-labelledby="pills-pizza-tab">
+				<div class="row mt-4">
+				  	<table class="table table-light table-bordered table-hover w-auto">
+				  		<thead>
+				  			<tr>
+								<th class="header" colspan="3">Regular Pizza</th>
+							</tr>
+				  		</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td>Small</td>
+								<td>Large</td>
+							</tr>
+							<tr>
+								<td>Cheese</td>
+								<td>$12.70</td>
+								<td>$17.95</td>
+							</tr>
+							<tr>
+								<td>1 topping</td>
+								<td>$13.70</td>
+								<td>$19.95</td>
+							</tr>
+							<tr>
+								<td>2 toppings</td>
+								<td>$15.20</td>
+								<td>$21.95</td>
+							</tr>
+							<tr>
+								<td>3 toppings</td>
+								<td>$16.20</td>
+								<td>$23.95</td>
+							</tr>
+							<tr>
+								<td>Special (5 toppings)</td>
+								<td>$17.75</td>
+								<td>$25.95</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+					<table class="table table-light table-bordered table-hover w-auto">
+						<thead>
+							<tr>
+								<th class="header" colspan="3">Sicilian Pizza <a href="https://en.wikipedia.org/wiki/Sicilian_pizza" class="text-muted small" target="_blank">(what is that?)</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td>Small</td>
+								<td>Large</td>
+							</tr>
+							<tr>
+								<td>Cheese</td>
+								<td>$24.45</td>
+								<td>$38.70</td>
+							</tr>
+							<tr>
+								<td>1 topping</td>
+								<td>$26.45</td>
+								<td>$40.70</td>
+							</tr>
+							<tr>
+								<td>2 toppings</td>
+								<td>$28.45</td>
+								<td>$42.70</td>
+							</tr>
+							<tr>
+								<td>3 toppings</td>
+								<td>$29.45</td>
+								<td>$44.70</td>
+							</tr>
+							<tr>
+								<td>Special (5 toppings)</td>
+								<td>$30.45</td>
+								<td>$45.70</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="table table-light table-bordered table-striped table-hover w-auto toppings">
+						<thead>
+							<tr>
+								<th class="header" colspan="3">Toppings</th>
+							</tr>
+						</thead>
+						<tbody class="toppings-body">
+							{% for topping in toppings %}
+							<tr>
+								<td>{{ topping.topping }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="tab-pane fade" id="pills-sub" role="tabpanel" aria-labelledby="pills-sub-tab">
+				<div class="table-center">
+				<div class="table-wrapper mt-4 mb-1">
+					<table class="sub table table-light table-bordered table-hover w-auto">
+						<thead>
+							<tr>
+								<th class="header" colspan="3">Subs</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td>Small</td>
+								<td>Large</td>
+							</tr>
+							
+							{% for sub in subs %}
+							<tr>
+								<td>{{ sub.style }}</td>
+								{% if sub.price_small %}
+									<td>${{ sub.price_small }}</td>
+								{% else %}
+									<td></td>
+								{% endif %}
+								<td>${{ sub.price_large }}</td>
+							</tr>
+							{% endfor %}
+
+							<tr>
+								<td>Extra Cheese</td>
+								<td>+$0.50</td>
+								<td>+$0.50</td>
+							</tr>
+
+							<tr>
+								<td>Extra Topping</td>
+								<td>+$0.50</td>
+								<td>+$0.50</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</div>
+			</div>
+
+		  	<div class="tab-pane fade" id="pills-pasta" role="tabpanel" aria-labelledby="pills-pasta-tab">
+		  		<table class="pasta table table-light table-bordered table-hover w-auto mt-4">
+		  			<thead>
+		  				<tr>
+		  					<th class="header" colspan="2">Pasta</th>
+		  				</tr>
+		  			</thead>
+		  			<tbody>
+		  				{% for pasta in pastas %}
+		  				<tr>
+		  					<td>{{ pasta.style }}</td>
+		  					<td>${{ pasta.price }}</td>
+		  				</tr>
+		  				{% endfor %}
+		  			</tbody>
+		  		</table>
+		  	</div>
+
+		  	<div class="tab-pane fade" id="pills-salad" role="tabpanel" aria-labelledby="pills-salad-tab">
+		  		<table class="salad table table-light table-bordered table-hover w-auto mt-4">
+		  			<thead>
+		  				<tr>
+		  					<th class="header" colspan="2">Salads</th>
+		  				</tr>
+		  			</thead>
+		  			<tbody>
+		  				{% for salad in salads %}
+		  				<tr>
+		  					<td>{{ salad.style }}</td>
+		  					<td>${{ salad.price }}</td>
+		  				</tr>
+		  				{% endfor %}
+		  			</tbody>
+		  		</table>
+		  	</div>
+
+		  	<div class="tab-pane fade" id="pills-platter" role="tabpanel" aria-labelledby="pills-platter-tab">
+		  		<table class="platter table table-light table-bordered table-hover w-auto mt-4">
+		  			<thead>
+		  				<tr>
+		  					<th class="header" colspan="3">Dinner Platters</th>
+		  				</tr>
+		  			</thead>
+		  			<tbody>
+		  				<tr>
+		  					<td></td>
+		  					<td>Small</td>
+		  					<td>Large</td>
+		  				</tr>
+
+		  				{% for platter in platters %}
+		  				<tr>
+		  					<td>{{ platter.style }}</td>
+		  					<td>${{ platter.price_small }}</td>
+		  					<td>${{ platter.price_large }}</td>
+		  				</tr>
+		  				{% endfor %}
+		  			</tbody>
+		  		</table>
+		  	</div>
+		</div>
+	</div>
+{% endblock %}

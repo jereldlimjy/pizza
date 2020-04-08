@@ -1,0 +1,38 @@
+{% extends 'orders/base.html' %}
+{% load static %}
+
+{% block title %}
+	Confirmation
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<div class="bg-light border mt-4" style="width: 60rem">
+				{% if user.first_name %}
+					<h2 class="text-center mt-2">Thank you for your order {{ user.first_name }}!</h2>
+				{% else %}
+					<h2 class="text-center mt-2">Dear Customer, thank you for your order!</h2>
+				{% endif %}
+				<div class="px-3">
+					<span class="h6">
+						Order: #{{ order_id }}</br>
+						Ordered on: {{ ordered_on }}</br>
+					</span>
+					<span>A summary of your order:</span>
+					<ul>
+						{% for item in items %}
+							<li>
+								{{ item }}
+							</li>
+						{% endfor %}
+					</ul>
+					<hr>
+					<div class="mb-2">
+						<span>Total: ${{ total }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

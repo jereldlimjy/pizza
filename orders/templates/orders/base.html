@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    	<!-- Bootstrap CSS -->
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    	<link rel="stylesheet" href="{% static 'orders/styles.css' %}">
+
+    	<link rel="icon" href="{% static 'orders/pizza.ico' %}" type="image/x-icon">
+
+		<title>
+			Jereld's Pizza: {% block title %}{% endblock %}
+		</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/">
+				<img class="icon" src="{% static 'orders/pizza.ico' %}" width="30" height="30" class="d-inline-block align-top" alt="Icon">
+    			Jereld's Pizza
+			</a>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			{% if user.is_authenticated %}
+				<span class="navbar-text text-center hide">
+					{% if user.first_name %}
+						Hello, {{ user.first_name }} :)
+					{% else %}
+						Hello :)
+					{% endif %}
+				</span>
+
+  			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    			<ul class="navbar-nav ml-auto">
+    				<li class="nav-item">
+    					<a class="nav-link" href="{% url 'cart' %}">
+    						<img src="{% static 'orders/cart.ico' %}" width="25" height="25" class="d-inline-block align-middle" alt="Cart">
+    					</a>
+    				</li>
+      				<li class="nav-item">
+        				<a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+      				</li>
+    			</ul>
+			</div>
+			{% else %}
+			{% endif %}
+		</nav>
+
+		{% if user.is_authenticated %}
+			<div class="content">
+		{% else %}
+			<div class="content" style="background-image: url('/static/orders/pizzaman.png')">
+		{% endif %}
+				{% include 'orders/messages.html' %}
+				{% block body %}
+				{% endblock %}
+			</div>
+
+		<footer class="footer">
+      		<span class="small text-white">Created by Jereld for CS50W Project 3. All Rights Reserved.</span>
+    	</footer>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	</body>
+</html>

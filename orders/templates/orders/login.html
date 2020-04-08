@@ -1,0 +1,36 @@
+{% extends 'orders/base.html' %}
+{% load static %}
+
+{% block title %}
+	Login
+{% endblock %}
+
+{% block body %}
+	<div class="row d-flex justify-content-center mt-5">
+		<div class="col-auto mt-5">
+			<form class="login rounded bg-light p-4" action="{% url 'login' %}" method="post">
+		    	{% csrf_token %}
+		    	
+		    	<h2 class="text-center">Login</h2>
+
+		    	<div class="form-group">
+		    		<label for="username_login">Username</label>
+			    	<input class="form-control" name="username" type="text" placeholder="Username" id="username_login" required>
+			    </div>
+
+			    <div class="form-group">
+			    	<label for="password_login">Password</label>
+			    	<input class="form-control" name="password" type="password" placeholder="Password" id="password_login" required>
+			    </div>
+
+			    <div class="text-center">
+			    	<button type="submit" class="btn btn-dark">Login</button>
+			    </div>
+			</form>
+
+			<div class="text-right mt-2">
+				<span class="text-light h5">New user? Click <a href="{% url 'register' %}" style="color: #343a40">here</a> to register now!</span>
+			</div>
+		</div>
+	</div>
+{% endblock %}
