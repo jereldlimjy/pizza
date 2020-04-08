@@ -2,7 +2,7 @@
 
 Web Programming with Python and JavaScript
 
-An online pizza shop modelled after Pinochio's Pizza & Subs. Users can select the various menu options and customise it with toppings of the choice.
+An online pizza shop modelled after Pinochio's Pizza & Subs. Users can select the various menu options and customise it with toppings of their choice.
 
 Integrated with Stripe API.
 
